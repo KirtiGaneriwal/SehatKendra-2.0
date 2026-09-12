@@ -1,0 +1,1232 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caresse | SEHAT KENDRA</title>
+<link rel="stylesheet" href="Accessibility/accessibility.css">
+<link rel="stylesheet" href="Learn/learn.css">
+<link rel="stylesheet" href="Dashboard/dashboard.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ TOP UTILITY BAR ============ -->
+<div class="utility-bar" id="utilityBar">
+  <div class="utility-left">
+    <span data-i18n="phone">📞 1800-11-4477 (Toll Free)</span>
+    <span class="dot">•</span>
+    <span data-i18n="govLine">Government of India · National Health Authority</span>
+  </div>
+  <div class="utility-right">
+    <div class="a11y-fontsize" role="group" aria-label="Adjust text size">
+      <button type="button" class="font-btn" data-size="sm" onclick="setFontSize('sm')" title="Decrease text size">A-</button>
+      <span class="font-sep">|</span>
+      <button type="button" class="font-btn active" data-size="md" onclick="setFontSize('md')" title="Default text size">A</button>
+      <span class="font-sep">|</span>
+      <button type="button" class="font-btn" data-size="lg" onclick="setFontSize('lg')" title="Increase text size">A+</button>
+    </div>
+    <span class="dot">•</span>
+    <button type="button" class="contrast-toggle" id="contrastToggleBtn" onclick="toggleContrast()" title="Toggle high contrast mode">
+      <span class="contrast-icon" id="contrastIcon" aria-hidden="true">◐</span> Contrast
+    </button>
+    <span class="dot">•</span>
+    <div class="lang-quick" role="group" aria-label="Quick language select">
+      <a href="#" data-lang="en" class="lang-link active" onclick="quickSelectLanguage('en', this); return false;">English</a>
+      <span class="lang-sep">|</span>
+      <a href="#" data-lang="bn" class="lang-link" onclick="quickSelectLanguage('bn', this); return false;">বাংলা</a>
+      <span class="lang-sep">|</span>
+      <a href="#" data-lang="hi" class="lang-link" onclick="quickSelectLanguage('hi', this); return false;">हिंदी</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ APP HEADER (always visible) ============ -->
+<header class="app-header" id="appHeader">
+  <div class="brand" onclick="goHome()">
+    <div class="brand-mark">
+  <img id="brandLogo" src="logo.png" alt="Brand Logo" style="height: 1em; width: auto; display: inline-block; vertical-align: middle;">
+</div>
+    <div class="brand-text">
+      <div class="brand-en">SEHAT KENDRA <span class="brand-hi">सेहत केंद्र</span></div>
+      <div class="brand-sub" data-i18n="brandSub">National Digital Health Gateway</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="theme-toggle" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle light / dark mode">🌙</button>
+    <div id="preAuthActions">
+      <button class="btn btn-outline" data-i18n="signInBtn" onclick="showScreen('screen-role')">👤 Citizen Sign-in</button>
+    </div>
+    <nav class="app-nav hidden" id="postAuthNav">
+      <a href="#" data-i18n="navHome" onclick="goHome();return false;">▦ Patient Home</a>
+      <span class="guest-pill" id="guestPill" data-i18n="guestPill">☀ Guest Citizen</span>
+      <a href="#" data-i18n="navLogout" onclick="logout();return false;">Logout</a>
+    </nav>
+</header>
+
+<main id="app">
+
+  <!-- ============ SCREEN: LANDING ============ -->
+  <section class="screen screen--landing active" id="screen-landing">
+    <div class="landing-wrap">
+      <span class="gov-pill" data-i18n="govPill">Government of India · National Health Authority</span>
+     <div class="landing-card" style="position: relative; padding-top: 40px;">
+  <button class="icon-btn" onclick="speak('Welcome to Sehat Kendra')" style="position: absolute; top: 16px; right: 16px;">
+    🔊 Listen
+  </button>
+  <div class="landing-badge" style="display: inline-flex; align-items: center; justify-content: center;">
+    <img src="logo.png" alt="Logo Badge" style="width: 32px; height: auto; display: block;">
+  </div>
+        <h1 data-i18n="heroTitle">Welcome to SEHAT KENDRA</h1>
+        <p class="landing-subtitle" data-i18n="heroSubtitle">Universal Digital Health Records &amp; Citizen Gateway</p>
+        <p class="landing-desc" data-i18n="heroDesc">A secure, citizen-friendly portal designed to connect your health journey with doctors, hospitals, and wellness services under Ayushman Bharat Digital Mission (ABDM).</p>
+        <button class="btn btn-primary" onclick="showScreen('screen-auth')">
+  Get Started →
+</button>
+        <button class="btn btn-ghost btn-block" data-i18n="selectLangBtn" onclick="showScreen('screen-language')">🌐 Select Preferred Language</button>
+        <hr>
+        <div class="landing-trust">
+          <span data-i18n="trust1">✓ 100% Free Public Health Service</span>
+          <span data-i18n="trust2">🔒 ABDM &amp; DISHA Compliant Consent Protection</span>
+          <span data-i18n="trust3">🗣 Voice Assisted in 6 Regional Languages</span>
+        </div>
+      </div>
+    </div>
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">SEHAT KENDRA</div>
+          <p>Your health, verified &amp; connected.</p>
+          <span class="badge-outline">National Health Stack Registry</span>
+        </div>
+        <div>
+          <h4>Clinical Services</h4>
+          <p>OPD Consultation Intake</p>
+          <p>e-Prescription Verification</p>
+          <p>Ayush Integrated Protocols</p>
+          <p>ABHA Card Linkage</p>
+        </div>
+        <div>
+          <h4>Institutional</h4>
+          <p>Hospital Triage Node</p>
+          <p>ASHA / MO Dashboard</p>
+          <p>Tele-Manas / eSanjeevani</p>
+          <p>Grievance Redressal (14477)</p>
+        </div>
+        <div>
+          <h4>Civic Assurance</h4>
+          <p>🛡 End-to-end Encrypted</p>
+          <p>☎ 24×7 Helpdesk</p>
+          <p>🏛 Free Public Service</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 SEHAT KENDRA, National Health Mission</span>
+        <span>Privacy · Terms · Accessibility</span>
+      </div>
+    </footer>
+  </section>
+
+  <!-- ============ SCREEN: LANGUAGE SELECT ============ -->
+  <section class="screen screen--narrow" id="screen-language">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Select Your Language</h2>
+        <button class="icon-btn" onclick="speak('Select your language')">🔊 Listen</button>
+      </div>
+      <p class="script-line">आपकी भाषा • আপনার ভাষা • உங்கள் மொழி • तुमची भाषा • ଆପଣଙ୍କ ଭାଷା</p>
+      <p class="panel-desc">Please choose the language in which you would like to use the SEHAT KENDRA portal.</p>
+      <div class="lang-grid">
+        <div class="lang-card selected" data-lang="English" onclick="selectLanguage(this)">
+          <div class="lang-name">English</div>
+          <div class="lang-native">English</div>
+          <span class="selected-pill">Selected</span>
+        </div>
+        <div class="lang-card" data-lang="Hindi" onclick="selectLanguage(this)">
+          <div class="lang-name">हिंदी</div>
+          <div class="lang-native">Hindi</div>
+        </div>
+        <div class="lang-card" data-lang="Bengali" onclick="selectLanguage(this)">
+          <div class="lang-name">বাংলা</div>
+          <div class="lang-native">Bengali</div>
+        </div>
+        <div class="lang-card" data-lang="Tamil" onclick="selectLanguage(this)">
+          <div class="lang-name">தமிழ்</div>
+          <div class="lang-native">Tamil</div>
+        </div>
+        <div class="lang-card" data-lang="Marathi" onclick="selectLanguage(this)">
+          <div class="lang-name">मराठी</div>
+          <div class="lang-native">Marathi</div>
+        </div>
+        <div class="lang-card" data-lang="Odia" onclick="selectLanguage(this)">
+          <div class="lang-name">ଓଡ଼ିଆ</div>
+          <div class="lang-native">Odia</div>
+        </div>
+      </div>
+      <div class="panel-actions">
+        <button class="btn btn-outline" onclick="showScreen('screen-landing')">← Back</button>
+        <button class="btn btn-primary" onclick="showScreen('screen-role')">Continue →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: ROLE SELECT ============ -->
+  <section class="screen screen--narrow" id="screen-role">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Select Your Role</h2>
+        <button class="icon-btn" onclick="speak('Select your role')">🔊 Listen</button>
+      </div>
+      <p class="panel-desc">Please identify how you would like to use SEHAT KENDRA today.</p>
+      <div class="role-grid">
+        <div class="role-card selected">
+          <div class="role-icon">👤</div>
+          <h3>Patient / Citizen</h3>
+          <p>Access your health records, register your digital health profile, and book consultations.</p>
+          <button class="btn btn-primary btn-block" onclick="showScreen('screen-auth')">Continue as Patient →</button>
+        </div>
+        <div class="role-card">
+          <div class="role-icon role-icon--teal">⚕</div>
+          <h3>Healthcare Professional / Doctor</h3>
+          <p>Access clinical workspaces, consultation queues, and patient health history.</p>
+          <button class="btn btn-outline btn-block" onclick="showScreen('screen-doctor-entry')">Access Doctor Portal →</button>
+        </div>
+      </div>
+      <div class="panel-actions panel-actions--single">
+        <button class="btn btn-outline" onclick="showScreen('screen-language')">← Back</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: AUTH METHOD SELECT ============ -->
+  <section class="screen screen--narrow" id="screen-auth">
+    <div class="panel">
+      <span class="eyebrow-pill">Citizen Authentication</span>
+      <div class="panel-head">
+        <h2>Patient Access &amp; Identity</h2>
+        <button class="icon-btn" onclick="speak('Patient access and identity')">🔊 Listen</button>
+      </div>
+      <p class="panel-desc">Choose how you would like to proceed into SEHAT KENDRA.</p>
+      <div class="notice-box">ⓘ This is a frontend prototype. No ral government ID or sensitive data is collected.</div>
+
+      <div class="auth-grid">
+
+  <!-- ABHA -->
+  <div class="auth-card" onclick="showScreen('screen-abha-login')">
+    <div class="auth-icon">🪪</div>
+    <h4>Ayushman Bharat Health Account (ABHA)</h4>
+    <p>Authenticate with your 14-digit ABHA ID.</p>
+    <button
+      type="button"
+      class="btn btn-primary btn-block"
+      onclick="event.stopPropagation(); showScreen('screen-abha-login')"
+    >
+      Verify ABHA
+    </button>
+  </div>
+
+
+  <!-- AADHAAR -->
+  <div class="auth-card" onclick="showScreen('screen-aadhaar-login')">
+    <div class="auth-icon">👁</div>
+    <h4>Aadhaar Demographic (Mock)</h4>
+    <p>Verify using your 12-digit Aadhaar number and OTP.</p>
+    <button
+      type="button"
+      class="btn btn-outline btn-block"
+      onclick="event.stopPropagation(); showScreen('screen-aadhaar-login')"
+    >
+      Verify Aadhaar
+    </button>
+  </div>
+
+
+  <!-- MOBILE -->
+  <div class="auth-card" onclick="showScreen('screen-mobile-login')">
+    <div class="auth-icon">📱</div>
+    <h4>Mobile Number OTP</h4>
+    <p>Receive a 6-digit mock OTP on your registered phone.</p>
+    <button
+      type="button"
+      class="btn btn-outline btn-block"
+      onclick="event.stopPropagation(); showScreen('screen-mobile-login')"
+    >
+      Mobile OTP
+    </button>
+  </div>
+
+
+  <!-- SAMPLE PATIENT -->
+  <div class="auth-card" onclick="loginAsSamplePatient()">
+    <div class="auth-icon">🙋</div>
+    <h4>Sample Patient Login</h4>
+    <p>Quickly demo the portal using a pre-configured mock patient.</p>
+    <button
+      type="button"
+      class="btn btn-outline btn-block"
+      onclick="event.stopPropagation(); loginAsSamplePatient()"
+    >
+      Use Demo Citizen
+    </button>
+  </div>
+
+
+  <!-- CARESSE -->
+  <div class="auth-card" onclick="showScreen('screen-caresse-register')">
+    <div class="auth-icon">🧠</div>
+    <h4>ADHD &amp; Dyslexic People Registration</h4>
+    <p>Set up a simple, readable Caresse profile with support preferences.</p>
+    <button
+      type="button"
+      class="btn btn-primary btn-block"
+      onclick="event.stopPropagation(); showScreen('screen-caresse-register')"
+    >
+      Register Now
+    </button>
+  </div>
+
+
+  <!-- NEW PATIENT -->
+  <div
+    class="auth-card auth-card--highlight"
+    onclick="showScreen('screen-register')"
+  >
+    <div class="auth-icon">➕</div>
+    <h4>New Patient Registration</h4>
+    <p>Create a new personal digital health record profile.</p>
+    <button
+      type="button"
+      class="btn btn-primary btn-block"
+      onclick="event.stopPropagation(); showScreen('screen-register')"
+    >
+      Register Now
+    </button>
+  </div>
+
+</div>
+      <div class="panel-actions panel-actions--single">
+        <button class="btn btn-outline" onclick="showScreen('screen-role')">← Back</button>
+      </div>
+    </div>
+  </section>
+  <!-- ============ SCREEN: ABHA LOGIN ============ -->
+  <section class="screen screen--narrow" id="screen-abha-login">
+    <div class="panel">
+      <span class="eyebrow-pill">ABHA Authentication</span>
+      <div class="panel-head">
+        <h2>ABHA Health Account Login</h2>
+        <button class="icon-btn" onclick="speak('Enter your 14-digit ABHA number')">🔊 Listen</button>
+      </div>
+      <p class="panel-desc">Enter your 14-digit ABHA number to receive a demo OTP.</p>
+      <div class="notice-box">ⓘ Demo only. No real ABHA authentication is performed.</div>
+      <div class="verify-box">
+        <div class="verify-box-head">
+          <h3>Demo ABHA Verification</h3>
+          <a href="#" onclick="showScreen('screen-auth'); return false;">Change Method</a>
+        </div>
+        <label for="abhaLoginId">ABHA Number</label>
+        <input type="text" id="abhaLoginId" inputmode="numeric" maxlength="14" value="91442188901204" placeholder="Enter 14-digit ABHA number" autocomplete="off">
+        <button type="button" class="btn btn-primary btn-block" onclick="requestAbhaOtp()">Send ABHA OTP ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: ABHA OTP ============ -->
+  <section class="screen screen--narrow" id="screen-abha-otp">
+    <div class="panel">
+      <span class="eyebrow-pill">ABHA Authentication</span>
+      <div class="panel-head">
+        <h2>Verify ABHA OTP</h2>
+      </div>
+      <p class="panel-desc">Enter the 6-digit demo OTP shown after requesting OTP.</p>
+      <div class="notice-box">ⓘ Demo only. No real OTP is sent.</div>
+      <div class="verify-box">
+        <label for="abhaOtpInput">ABHA OTP</label>
+        <input type="text" id="abhaOtpInput" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit OTP" autocomplete="one-time-code">
+        <button type="button" class="btn btn-primary btn-block" onclick="verifyAbhaLogin()">Verify ABHA →</button>
+        <button type="button" class="btn btn-outline btn-block" onclick="showScreen('screen-abha-login')">← Change ABHA</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: AADHAAR LOGIN ============ -->
+  <section class="screen screen--narrow" id="screen-aadhaar-login">
+    <div class="panel">
+      <span class="eyebrow-pill">Citizen Authentication</span>
+      <div class="panel-head">
+        <h2>Aadhaar Demographic Login</h2>
+        <button class="icon-btn" onclick="speak('Enter your 12-digit Aadhaar number')">🔊 Listen</button>
+      </div>
+      <p class="panel-desc">Enter your 12-digit Aadhaar number for demo verification.</p>
+      <div class="notice-box">ⓘ Demo only. No real Aadhaar authentication is performed. Use dummy data.</div>
+      <div class="verify-box">
+        <div class="verify-box-head">
+          <h3>Demo Aadhaar Verification</h3>
+          <a href="#" onclick="showScreen('screen-auth'); return false;">Change Method</a>
+        </div>
+        <label for="aadhaarLoginId">Aadhaar Number</label>
+        <input type="text" id="aadhaarLoginId" inputmode="numeric" maxlength="12" value="123456789012" placeholder="Enter 12-digit Aadhaar" autocomplete="off">
+        <button type="button" class="btn btn-primary btn-block" onclick="requestAadhaarLoginOtp()">Send Demo OTP ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: AADHAAR OTP ============ -->
+  <section class="screen screen--narrow" id="screen-aadhaar-otp">
+    <div class="panel">
+      <span class="eyebrow-pill">Aadhaar Authentication</span>
+      <div class="panel-head">
+        <h2>Verify Aadhaar OTP</h2>
+      </div>
+      <p class="panel-desc">Enter the 6-digit demo OTP shown after requesting OTP.</p>
+      <div class="notice-box">ⓘ Demo only. No real OTP is sent.</div>
+      <div class="verify-box">
+        <label for="aadhaarOtpInput">Aadhaar OTP</label>
+        <input type="text" id="aadhaarOtpInput" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit OTP" autocomplete="one-time-code">
+        <button type="button" class="btn btn-primary btn-block" onclick="verifyAadhaarLogin()">Verify Aadhaar →</button>
+        <button type="button" class="btn btn-outline btn-block" onclick="showScreen('screen-aadhaar-login')">← Change Aadhaar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: MOBILE LOGIN ============ -->
+  <section class="screen screen--narrow" id="screen-mobile-login">
+    <div class="panel">
+      <span class="eyebrow-pill">Mobile Authentication</span>
+      <div class="panel-head">
+        <h2>Mobile Number Login</h2>
+        <button class="icon-btn" onclick="speak('Enter your 10 digit mobile number')">🔊 Listen</button>
+      </div>
+      <p class="panel-desc">Enter your registered 10-digit mobile number to receive a demo OTP.</p>
+      <div class="notice-box">ⓘ Demo only. No real SMS is sent.</div>
+      <div class="verify-box">
+        <div class="verify-box-head">
+          <h3>Demo Mobile Verification</h3>
+          <a href="#" onclick="showScreen('screen-auth'); return false;">Change Method</a>
+        </div>
+        <label for="mobileLoginNumber">Mobile Number</label>
+        <input type="text" id="mobileLoginNumber" inputmode="numeric" maxlength="10" value="9876543210" placeholder="Enter 10-digit mobile number" autocomplete="off">
+        <button type="button" class="btn btn-primary btn-block" onclick="requestMobileOtp()">Send Mobile OTP ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: MOBILE OTP ============ -->
+  <section class="screen screen--narrow" id="screen-mobile-otp">
+    <div class="panel">
+      <span class="eyebrow-pill">Mobile Authentication</span>
+      <div class="panel-head"><h2>Verify Mobile OTP</h2></div>
+      <p class="panel-desc">Enter the 6-digit demo OTP shown after requesting OTP.</p>
+      <div class="notice-box">ⓘ Demo only. No real SMS is sent.</div>
+      <div class="verify-box">
+        <label for="mobileOtpInput">Mobile OTP</label>
+        <input type="text" id="mobileOtpInput" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit OTP" autocomplete="one-time-code">
+        <button type="button" class="btn btn-primary btn-block" onclick="verifyMobileOtp()">Verify Mobile →</button>
+        <button type="button" class="btn btn-outline btn-block" onclick="showScreen('screen-mobile-login')">← Change Mobile</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: NEW PATIENT REGISTRATION ============ -->
+  <section class="screen screen--narrow" id="screen-register">
+    <div class="panel stepper-panel">
+      <div class="panel-head">
+        <div>
+          <span class="step-pill" id="regStepLabel">Step 1 of 3: Identity Setup</span>
+        </div>
+        <button class="icon-btn" onclick="speak('New patient registration')">🔊 Listen</button>
+      </div>
+      <h2 style="margin-top:0;">New Patient Registration</h2>
+      <p class="panel-desc">Provide your basic demographic details to establish your health profile.</p>
+
+      <form id="regForm" onsubmit="return false;">
+        <!-- STEP 1 -->
+        <div class="reg-step active" id="regStep1">
+          <div class="field">
+            <label>Full Name *</label>
+            <input type="text" id="regName" placeholder="e.g. Smt. Ananya Sen">
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Date of Birth *</label>
+              <input type="date" id="regDob">
+            </div>
+            <div class="field">
+              <label>Gender *</label>
+              <select id="regGender"><option>Female</option><option>Male</option><option>Other</option><option>Prefer not to say</option></select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Mobile Number *</label>
+              <input type="text" id="regMobile" placeholder="10-digit mobile number">
+            </div>
+            <div class="field">
+              <label>Email Address (Optional)</label>
+              <input type="email" id="regEmail" placeholder="citizen@example.gov.in">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>City / Town *</label>
+              <input type="text" id="regCity" placeholder="e.g. Barasat / Kolkata">
+            </div>
+            <div class="field">
+              <label>State / Union Territory</label>
+              <select id="regState"><option>West Bengal</option><option>Delhi</option><option>Maharashtra</option><option>Tamil Nadu</option><option>Odisha</option><option>Other</option></select>
+            </div>
+          </div>
+          <div class="panel-actions">
+            <button type="button" class="btn btn-outline" onclick="showScreen('screen-auth')">← Back</button>
+            <button type="button" class="btn btn-primary" onclick="regNext(1)">Continue →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="reg-step" id="regStep2">
+          <div class="field">
+            <label>ABHA Number (Optional)</label>
+            <input type="text" id="regAbha" placeholder="Leave blank to create a new ABHA on registration">
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Emergency Contact Name</label>
+              <input type="text" id="regEmergencyName" placeholder="Full name">
+            </div>
+            <div class="field">
+              <label>Relationship</label>
+              <input type="text" id="regEmergencyRelation" placeholder="e.g. Spouse, Parent, Sibling">
+            </div>
+          </div>
+          <div class="field">
+            <label>Emergency Contact Phone</label>
+            <input type="text" id="regEmergencyPhone" placeholder="10-digit mobile number">
+          </div>
+          <div class="panel-actions">
+            <button type="button" class="btn btn-outline" onclick="regBack(2)">← Back</button>
+            <button type="button" class="btn btn-primary" onclick="goToRegStep(3)">Continue →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="reg-step" id="regStep3">
+          <h3 class="section-title" style="margin-top:0;">Review Your Details</h3>
+          <div class="review-box" id="regReviewBox"></div>
+          <label class="check-row"><input type="checkbox" id="regConsent"> I consent to SEHAT KENDRA storing my details under ABDM &amp; DISHA compliant consent protection to establish my digital health record.</label>
+          <div class="panel-actions">
+            <button type="button" class="btn btn-outline" onclick="regBack(3)">← Back</button>
+            <button type="button" class="btn btn-primary" onclick="submitRegistration()">Register &amp; Proceed to Health Intake →</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: CARESSE REGISTRATION ============ -->
+  <section class="screen screen--narrow" id="screen-caresse-register">
+    <div class="panel caresse-register-panel">
+      <div class="caresse-brandline"><img src="caresse-logo.png" alt="Caresse logo"><span>CARESSE</span></div>
+      <div class="panel-head">
+        <div><span class="step-pill" id="caresseRegStepLabel">Step 1 of 3: About You</span></div>
+        <button class="icon-btn" onclick="speak('Caresse registration. A simple three step setup.')">🔊 Listen</button>
+      </div>
+      <h2 style="margin-top:0;">Create your Caresse profile</h2>
+      <p class="panel-desc">A calm, simple registration for ADHD &amp; dyslexic people. You can change these settings later.</p>
+      <div class="caresse-progress"><span id="caresseRegProgress" style="width:33%"></span></div>
+
+      <form onsubmit="return false;">
+        <div class="caresse-reg-step active" id="caresseRegStep1">
+          <div class="caresse-help">Take your time. Short fields only.</div>
+          <div class="field"><label>Your name *</label><input id="cRegName" type="text" placeholder="e.g. Maya"></div>
+          <div class="field"><label>What should we call you? (Optional)</label><input id="cRegNickname" type="text" placeholder="Preferred name"></div>
+          <div class="field"><label>Mobile number *</label><input id="cRegMobile" type="tel" placeholder="10-digit mobile number"></div>
+          <div class="panel-actions"><button type="button" class="btn btn-outline" onclick="showScreen('screen-auth')">← Back</button><button type="button" class="btn btn-primary" onclick="caresseRegNext(1)">Continue →</button></div>
+        </div>
+
+        <div class="caresse-reg-step" id="caresseRegStep2">
+          <div class="caresse-help">Choose what helps you read, focus and learn comfortably.</div>
+          <div class="field"><label>Support profile *</label>
+            <div class="choice-grid" id="cRegSupport">
+              <button type="button" class="choice-card" data-value="ADHD" onclick="selectCaresseChoice(this,'cRegSupport')"><strong>ADHD</strong><span>Focus, pacing &amp; distraction support</span></button>
+              <button type="button" class="choice-card" data-value="Dyslexia" onclick="selectCaresseChoice(this,'cRegSupport')"><strong>Dyslexia</strong><span>Reading, spacing &amp; text support</span></button>
+              <button type="button" class="choice-card" data-value="Both" onclick="selectCaresseChoice(this,'cRegSupport')"><strong>Both</strong><span>Use both support sets</span></button>
+            </div>
+          </div>
+          <div class="field"><label>Reading style</label><select id="cRegReading"><option>Standard</option><option>Dyslexia-friendly</option><option>Mono</option></select></div>
+          <div class="field"><label>Focus support</label><select id="cRegFocus"><option>Balanced</option><option>Focus Mode</option><option>One Thing at a Time</option></select></div>
+          <div class="panel-actions"><button type="button" class="btn btn-outline" onclick="caresseRegBack(2)">← Back</button><button type="button" class="btn btn-primary" onclick="caresseRegNext(2)">Continue →</button></div>
+        </div>
+
+        <div class="caresse-reg-step" id="caresseRegStep3">
+          <h3 class="section-title" style="margin-top:0;">Check your choices</h3>
+          <div class="caresse-review" id="caresseReview"></div>
+          <label class="check-row"><input type="checkbox" id="cRegConsent"> I agree to save this profile on this device for my Caresse experience.</label>
+          <div class="panel-actions"><button type="button" class="btn btn-outline" onclick="caresseRegBack(3)">← Back</button><button type="button" class="btn btn-primary" onclick="submitCaresseRegistration()">Save &amp; Continue →</button></div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: AFTER REGISTRATION ============ -->
+  <section class="screen screen--narrow" id="screen-caresse-choice">
+    <div class="panel center-panel caresse-choice-panel">
+      <img class="caresse-choice-logo" src="caresse-logo.png" alt="Caresse">
+      <span class="eyebrow-pill">Profile saved</span>
+      <h2 id="caresseChoiceTitle">You're ready to use Caresse</h2>
+      <p class="panel-desc">Your registration information has been saved. Choose where you want to go next.</p>
+      <div class="choice-actions">
+        <button class="big-choice" onclick="enterApp('screen-dashboard')"><span>▦</span><strong>Continue to Dashboard</strong><small>Keep using the SEHAT KENDRA health dashboard.</small></button>
+        <button class="big-choice big-choice--primary" onclick="enterApp('screen-caresse-dashboard')"><span>✦</span><strong>Continue to Caresse App</strong><small>Open ADHD &amp; Dyslexia-friendly tools for focus, reading and learning.</small></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: CARESSE DASHBOARD ============ -->
+  <section class="screen screen--wide caresse-screen" id="screen-caresse-dashboard">
+    <div id="caresseDashboardMount"></div>
+  </section>
+
+  <!-- ============ SCREEN: CARESSE ACCESSIBILITY ============ -->
+  <section class="screen screen--wide caresse-screen" id="screen-caresse-accessibility">
+    <div id="caresseAccessibilityMount"></div>
+  </section>
+
+  <!-- ============ SCREEN: CARESSE LEARN ============ -->
+  <section class="screen screen--wide caresse-screen" id="screen-caresse-learn">
+    <div id="caresseLearnMount"></div>
+  </section>
+
+  <!-- ============ SCREEN: HEALTH QUESTIONNAIRE ============ -->
+  <section class="screen screen--narrow" id="screen-questionnaire">
+    <div class="notice-banner" style="margin-bottom:20px;">
+      <strong>STATUTORY NOTICE · सांविधिक सूचना</strong>
+      <p>This health history questionnaire aggregates records for consultation. It is NOT a medical diagnosis system.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-head">
+        <span id="qSectionLabel" class="muted">Section 1 of 8</span>
+        <button class="icon-btn" onclick="speak('Health history questionnaire')">🔊 Listen</button>
+      </div>
+      <div class="progress-head">
+        <span id="qPercentLabel">13% Complete</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="qProgressFill" style="width:13%;"></div></div>
+
+      <h3 id="qSectionTitle" style="margin:0 0 16px;">1. Basic Health Metrics</h3>
+      <div id="qSectionBody"></div>
+
+      <div class="panel-actions">
+        <button class="btn btn-outline" id="qBackBtn" onclick="questionnaireBack()">← Back</button>
+        <button class="btn btn-primary" id="qNextBtn" onclick="questionnaireNext()">Continue →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: PATIENT DASHBOARD ============ -->
+  <section class="screen screen--wide" id="screen-dashboard">
+    <div class="dash-topline">
+      <span class="badge-verified" id="dashAbhaLinked">ABHA Linked: 91-4421-8890-1204</span>
+      <span>National Health Mission</span>
+    </div>
+    <div class="dash-header">
+      <div>
+        <h1 id="dashPatientName">Welcome, Smt. Ananya Sen</h1>
+        <p class="muted">Unified Citizen Health Dashboard · Secure &amp; Consent Protected</p>
+      </div>
+      <div class="dash-header-actions">
+        <button class="btn btn-outline" onclick="speak('Here is an overview of your health dashboard')">🔊 Listen to Overview</button>
+        <button class="btn btn-outline" onclick="openProfile()">👤 Profile</button>
+      </div>
+    </div>
+
+    <div class="dash-grid-2">
+      <div class="card" id="dashHealthSummary">
+        <div class="card-head"><h3>⊙ Health Summary</h3><a href="#" onclick="openProfile();return false;">View Health Profile</a></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>🗓 Upcoming Consultation</h3></div>
+        <div id="dashUpcoming"></div>
+      </div>
+    </div>
+
+    <h3 class="section-title">Primary Health Actions</h3>
+    <div class="dash-grid-4">
+      <div class="action-card" onclick="showScreen('screen-book-1')">
+        <div class="action-icon">🗓</div>
+        <h4>Book Appointment</h4>
+        <p>Choose between General Medicine or Ayurveda pathways and select doctor slots.</p>
+        <button class="btn btn-primary btn-block">Book Appointment →</button>
+      </div>
+      <div class="action-card" onclick="showScreen('screen-careai')">
+        <div class="action-icon action-icon--teal">🩺</div>
+        <h4>Care AI Guide</h4>
+        <p>Ask health education questions, understand medical terms, or discuss general wellness.</p>
+        <button class="btn btn-outline btn-block">Open Care AI ⌨</button>
+      </div>
+      <div class="action-card" onclick="openAyush()">
+        <div class="action-icon action-icon--green">🌿</div>
+        <h4>Ayurveda &amp; AYUSH</h4>
+        <p>Consult certified Vaidyas, explore Dinacharya routines, and traditional wellness.</p>
+        <button class="btn btn-outline btn-block">Explore AYUSH →</button>
+      </div>
+      <div class="action-card" onclick="openProfile()">
+        <div class="action-icon">📄</div>
+        <h4>Health Profile</h4>
+        <p>View your complete ABHA registration, demographics, and emergency contact.</p>
+        <button class="btn btn-outline btn-block">Open Profile ⊚</button>
+      </div>
+    </div>
+
+    <h3 class="section-title">Digital Prescription Center</h3>
+    <div class="rx-hero">
+      <div class="rx-hero-text">
+        <span class="eyebrow-pill">New · Rural &amp; Voice Friendly</span>
+        <h3>Scan, Speak, or Store Your Prescriptions Digitally</h3>
+        <p>Upload a photo of a paper prescription, or simply speak your symptoms aloud in your own language. SEHAT KENDRA drafts a structured digital prescription you can review, translate, summarise, and share with any doctor — no literacy or paperwork required.</p>
+      </div>
+      <div class="rx-hero-actions">
+        <button class="btn btn-primary" onclick="openPrescriptionCenter()">📋 Open Prescription Center →</button>
+      </div>
+    </div>
+
+    <div class="dash-grid-2">
+      <div class="card">
+        <div class="card-head"><h3>Health Record Management</h3></div>
+        <div class="list-row" onclick="startQuestionnaire()">
+          <div>
+            <strong>Medical History &amp; Questionnaire Answers</strong>
+            <p class="muted">Review past illnesses, surgeries, and family medical background</p>
+          </div>
+          <span>›</span>
+        </div>
+        <div class="list-row" onclick="openPrescriptionCenter()">
+          <div>
+            <strong>Current Medication Register</strong>
+            <p class="muted">Add or update active prescription drugs and frequencies</p>
+          </div>
+          <span>›</span>
+        </div>
+        <div class="list-row" onclick="openPrescriptionCenter()">
+          <div>
+            <strong>Digital Prescriptions</strong>
+            <p class="muted">Scan, speak, or review your saved digital prescriptions</p>
+          </div>
+          <span>›</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Traditional Wellness &amp; Lifestyle</h3><a href="#" onclick="openAyush();return false;">View All</a></div>
+        <div class="list-row" onclick="openAyush()">
+          <div><strong>Dinacharya (Daily Routine)</strong><p class="muted">Morning hydration, sensory cleansing &amp; circadian rhythm</p></div>
+          <span>›</span>
+        </div>
+        <div class="list-row" onclick="openAyush()">
+          <div><strong>Yoga &amp; Asana Practices</strong><p class="muted">Gentle mobility postures for joint ease and spinal health</p></div>
+          <span>›</span>
+        </div>
+        <div class="list-row" onclick="openAyush()">
+          <div><strong>Pranayama (Breath Control)</strong><p class="muted">Alternate nostril breathing and stress downregulation</p></div>
+          <span>›</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: BOOKING STEP 1 — PATHWAY ============ -->
+  <section class="screen screen--narrow" id="screen-book-1">
+    <div class="panel">
+      <div class="panel-head">
+        <span class="eyebrow-pill">National OPD Appointment Scheduling</span>
+        <button class="icon-btn" onclick="speak('Book doctor consultation')">🔊 Listen</button>
+      </div>
+      <h2 style="margin-top:0;">Book Doctor Consultation</h2>
+      <p class="panel-desc">Step 1 of 5: Choose Treatment Pathway — SEHAT KENDRA supports both Allopathic General Medicine and traditional AYUSH healthcare systems. Both options adhere to National Health Mission public standards.</p>
+
+      <div class="pathway-grid">
+        <div class="pathway-card selected" onclick="selectPathway('general', this)">
+          <div class="pathway-icon">⊞</div>
+          <h4>1. General Medicine (Allopathy)</h4>
+          <p>Consult healthcare practitioners practicing conventional modern medicine. Ideal for diagnostic lab reviews, acute symptoms, prescription management, and hospital referrals.</p>
+          <button
+  class="btn btn-primary btn-block"
+  onclick="event.stopPropagation(); state.booking.pathway='general'; goToDoctorStep();"
+>
+  Select General Medicine →
+</button>
+        </div>
+        <div class="pathway-card" onclick="selectPathway('ayurveda', this)">
+          <div class="pathway-icon pathway-icon--teal">🌿</div>
+          <h4>2. Ayurveda / AYUSH Healthcare</h4>
+          <p>Consult qualified Vaidyas in classical Ayurvedic medicine, chronic joint care (Sandhivata), lifestyle guidance (Dinacharya), and traditional Rasayana rejuvenation.</p>
+          <button
+  class="btn btn-outline btn-block"
+  onclick="event.stopPropagation(); state.booking.pathway='ayurveda'; goToDoctorStep();"
+>
+  Select Ayurveda / AYUSH →
+</button>
+        </div>
+      </div>
+      <div class="panel-actions panel-actions--single">
+        <button class="btn btn-outline" onclick="goHome()">Cancel</button>
+        <button class="btn btn-primary" onclick="goToDoctorStep()">Continue to Choose Doctor →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: BOOKING STEP 2 — GENERAL DOCTORS ============ -->
+  <section class="screen screen--narrow" id="screen-book-2-general">
+    <div class="panel">
+      <div class="panel-head">
+        <span class="eyebrow-pill">National OPD Appointment Scheduling</span>
+        <button class="icon-btn" onclick="speak('Select general medicine clinician')">🔊 Listen</button>
+      </div>
+      <div class="step-row">
+        <h2 style="margin:0;">Book Doctor Consultation</h2>
+        <a href="#" onclick="showScreen('screen-book-1');return false;">Change Pathway (General)</a>
+      </div>
+      <p class="panel-desc">Step 2 of 5: Choose General Medicine Clinician</p>
+
+      <div class="doctor-grid">
+        <div class="doctor-card selected" onclick="selectDoctor(this, 'Dr. Priya Sharma', 'General Medicine')">
+          <div class="doctor-avatar">PS</div>
+          <h4>Dr. Priya Sharma</h4>
+          <p class="muted">MBBS, MD (General Medicine)</p>
+          <p class="doctor-spec">General Medicine</p>
+          <p class="muted">Dr. Ram Manohar Lohia Hospital, New Delhi</p>
+          <p class="muted">★ 4.8 (312 reviews) · 12 Years Clinical Practice</p>
+          <button class="btn btn-primary">Selected</button>
+        </div>
+        <div class="doctor-card" onclick="selectDoctor(this, 'Dr. Debabrata Roy', 'Orthopaedics &amp; Joint Care')">
+          <div class="doctor-avatar">DR</div>
+          <h4>Dr. Debabrata Roy</h4>
+          <p class="muted">MBBS, MS (Orthopaedics), DNB</p>
+          <p class="doctor-spec">Orthopaedics &amp; Joint Care</p>
+          <p class="muted">District Hospital, North 24 Parganas, West Bengal</p>
+          <p class="muted">★ 4.6 (240 reviews) · 16 Years Clinical Practice</p>
+          <button class="btn btn-outline">Select</button>
+        </div>
+        <div class="doctor-card" onclick="selectDoctor(this, 'Dr. Sunita Deshmukh', 'Obstetrics &amp; Gynaecology')">
+          <div class="doctor-avatar">SD</div>
+          <h4>Dr. Sunita Deshmukh</h4>
+          <p class="muted">MBBS, MD (Obstetrics &amp; Gynaecology)</p>
+          <p class="doctor-spec">Obstetrics &amp; Gynaecology</p>
+          <p class="muted">AIIMS Comprehensive Health Centre</p>
+          <p class="muted">★ 4.9 (198 reviews) · 14 Years Clinical Practice</p>
+          <button class="btn btn-outline">Select</button>
+        </div>
+      </div>
+      <div class="panel-actions panel-actions--single">
+        <button class="btn btn-outline" onclick="showScreen('screen-book-1')">← Back</button>
+        <button class="btn btn-primary" onclick="showScreen('screen-book-3')">Continue to Mode &amp; Slot →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: BOOKING STEP 2 — AYURVEDA DOCTORS ============ -->
+  <section class="screen screen--narrow" id="screen-book-2-ayurveda">
+    <div class="panel">
+      <div class="panel-head">
+        <span class="eyebrow-pill">National OPD Appointment Scheduling</span>
+        <button class="icon-btn" onclick="speak('Select Ayurveda specialist')">🔊 Listen</button>
+      </div>
+      <div class="step-row">
+        <h2 style="margin:0;">Book Doctor Consultation</h2>
+        <a href="#" onclick="showScreen('screen-book-1');return false;">Change Pathway (Ayurveda)</a>
+      </div>
+      <p class="panel-desc">Step 2 of 5: Choose Ayurveda Specialist / Vaidya</p>
+
+      <div class="doctor-grid">
+        <div class="doctor-card selected" onclick="selectDoctor(this, 'Vaidya Dr. Rajesh Sharma', 'Kayachikitsa (Internal Medicine &amp; Joint Care)')">
+          <div class="doctor-avatar">RS</div>
+          <h4>Vaidya Dr. Rajesh Sharma</h4>
+          <p class="muted">BAMS, MD (Ayurveda - Kayachikitsa)</p>
+          <p class="doctor-spec">Kayachikitsa (Internal Medicine &amp; Joint Care)</p>
+          <p class="muted">National Institute of Ayurveda (NIA), OPD Wing, Jaipur</p>
+          <p class="muted">★ 4.8 (294 reviews) · 18 Years Classical Practice</p>
+          <button class="btn btn-primary">Selected</button>
+        </div>
+        <div class="doctor-card" onclick="selectDoctor(this, 'Vaidya Smt. Arundhati Mukherjee', 'Rasayana, Digestion &amp; Ayush Wellness')">
+          <div class="doctor-avatar">AM</div>
+          <h4>Vaidya Smt. Arundhati Mukherjee</h4>
+          <p class="muted">BAMS, Fellowship in Rasayana &amp; Ayush Wellness</p>
+          <p class="doctor-spec">Rasayana, Digestion &amp; Ayush Wellness</p>
+          <p class="muted">All India Institute of Ayurveda (AIIA), New Delhi</p>
+          <p class="muted">★ 4.8 (215 reviews) · 15 Years Classical Practice</p>
+          <button class="btn btn-outline">Select</button>
+        </div>
+        <div class="doctor-card" onclick="selectDoctor(this, 'Vaidya K. Ramanathan', 'Herbal Medicine &amp; Metabolic Health')">
+          <div class="doctor-avatar">KR</div>
+          <h4>Vaidya K. Ramanathan</h4>
+          <p class="muted">BAMS, MD (Dravyaguna Vijnana)</p>
+          <p class="doctor-spec">Herbal Medicine &amp; Metabolic Health</p>
+          <p class="muted">Central Council for Research in Ayurvedic Sciences (CCRAS) Centre</p>
+          <p class="muted">★ 4.9 (340 reviews) · 20 Years Classical Practice</p>
+          <button class="btn btn-outline">Select</button>
+        </div>
+      </div>
+      <div class="panel-actions panel-actions--single">
+        <button class="btn btn-outline" onclick="showScreen('screen-book-1')">← Back</button>
+        <button class="btn btn-primary" onclick="showScreen('screen-book-3')">Continue to Mode &amp; Slot →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: BOOKING STEP 3 — MODE & SLOT ============ -->
+  <section class="screen screen--narrow" id="screen-book-3">
+    <div class="panel">
+      <div class="panel-head">
+        <span class="eyebrow-pill">National OPD Appointment Scheduling</span>
+        <button class="icon-btn" onclick="speak('Choose consultation mode date and time')">🔊 Listen</button>
+      </div>
+      <h2 style="margin-top:0;">Book Doctor Consultation</h2>
+      <p class="panel-desc">Step 3 of 5: Consultation Mode, Date &amp; Time</p>
+
+      <div class="form-row">
+        <div class="field">
+          <label>Consultation Mode</label>
+          <select id="consultMode">
+            <option>In-Person Hospital OPD</option>
+            <option>eSanjeevani Tele-Consultation</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Consultation Date</label>
+          <select id="consultDate">
+  <option value="2026-09-09">Today (09 Sep 2026)</option>
+  <option value="2026-09-10" selected>Tomorrow (10 Sep 2026)</option>
+  <option value="2026-09-11">Day After (11 Sep 2026)</option>
+</select>
+        </div>
+      </div>
+
+      <label>Choose Available Time Slot</label>
+      <div class="slot-grid">
+        <div class="slot selected" onclick="selectSlot(this)">10:00 AM</div>
+        <div class="slot" onclick="selectSlot(this)">11:30 AM</div>
+        <div class="slot" onclick="selectSlot(this)">02:00 PM</div>
+        <div class="slot" onclick="selectSlot(this)">04:00 PM</div>
+      </div>
+
+      <div class="panel-actions">
+        <button class="btn btn-outline" onclick="goBackFromStep3()">← Back</button>
+        <button class="btn btn-primary" onclick="goToConsent()">Continue to Record Consent →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: BOOKING STEP 4 — CONSENT ============ -->
+  <section class="screen screen--narrow" id="screen-book-consent">
+    <div class="panel">
+      <div class="panel-head">
+        <span class="eyebrow-pill">National OPD Appointment Scheduling</span>
+        <button class="icon-btn" onclick="speak('Review and confirm your appointment')">🔊 Listen</button>
+      </div>
+      <h2 style="margin-top:0;">Book Doctor Consultation</h2>
+      <p class="panel-desc">Step 4 of 5: Review &amp; Record-Sharing Consent</p>
+
+      <div class="summary-block-box" id="consentSummary"></div>
+
+      <div class="field" style="margin-top:18px;">
+        <label>Attach a saved digital prescription (optional)</label>
+        <select id="rxAttachSelect"></select>
+      </div>
+
+      <label class="check-row" style="margin-top:8px;"><input type="checkbox" id="bookingConsent"> I consent to sharing my digital health record, current medicines, and allergy history with the selected doctor for this consultation, under ABDM &amp; DISHA compliant consent protection.</label>
+
+      <div class="panel-actions">
+        <button class="btn btn-outline" onclick="showScreen('screen-book-3')">← Back</button>
+        <button class="btn btn-primary" onclick="confirmBooking()">Confirm Booking →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: BOOKING STEP 5 — CONFIRMATION ============ -->
+  <section class="screen screen--narrow" id="screen-book-confirm">
+    <div class="panel center-panel">
+      <div class="success-badge">✓</div>
+      <h2>Appointment Confirmed</h2>
+      <p class="muted">Step 5 of 5: Your consultation has been scheduled successfully.</p>
+      <div class="summary-block-box" style="text-align:left; margin-top:20px;">
+        <p><strong>Doctor:</strong> <span id="confirmDoctor"></span></p>
+        <p><strong>Details:</strong> <span id="confirmSlot"></span></p>
+      </div>
+      <button class="btn btn-primary btn-block" style="margin-top:24px;" onclick="showScreen('screen-dashboard')">Go to Patient Home →</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: AYUSH & TRADITIONAL WELLNESS ============ -->
+  <section class="screen screen--wide" id="screen-ayush">
+    <div class="ayush-hero">
+      <span class="eyebrow-pill">AYUSH Integrated Wellness</span>
+      <h2>Traditional Wellness &amp; Lifestyle Guidance</h2>
+      <p>Explore classical Ayurvedic lifestyle practices — Dinacharya, sleep, movement, breathing, and nutrition guidance — curated alongside modern clinical care under the National Health Mission's AYUSH integration.</p>
+      <div class="ayush-hero-actions">
+        <button class="btn btn-primary" onclick="showScreen('screen-book-1')">Consult an Ayurveda Vaidya →</button>
+        <button class="btn btn-outline" onclick="goHome()">← Patient Home</button>
+      </div>
+    </div>
+
+    <div class="tab-row">
+      <div class="tab selected" onclick="selectWellnessTab(this, 0)">☀ Daily Wellness (Dinacharya)</div>
+      <div class="tab" onclick="selectWellnessTab(this, 1)">☾ Sleep &amp; Restful Rejuvenation (Nidra)</div>
+      <div class="tab" onclick="selectWellnessTab(this, 2)">🧘 Yoga &amp; Therapeutic Asanas</div>
+      <div class="tab" onclick="selectWellnessTab(this, 3)">🌬 Breathing Practices (Pranayama)</div>
+      <div class="tab" onclick="selectWellnessTab(this, 4)">🍽 Mindful Nutrition (Ahara)</div>
+    </div>
+
+    <div class="wellness-panel" id="wellnessPanel"></div>
+  </section>
+
+  <!-- ============ SCREEN: CARE AI GUIDE ============ -->
+  <section class="screen screen--narrow" id="screen-careai">
+    <div class="panel-head" style="margin-bottom:6px;">
+      <h2 style="margin:0;">Care AI Guide</h2>
+      <button class="icon-btn" onclick="goHome()">← Patient Home</button>
+    </div>
+    <p class="panel-desc">Ask health education questions, understand medical terms, or discuss general wellness. Care AI does not replace a doctor's advice.</p>
+
+    <div class="chat-card">
+      <div class="chat-head">
+        <div class="chat-avatar">🩺</div>
+        <div>
+          <div class="chat-name">Care AI</div>
+          <div class="chat-status">● Online · General Health Guidance</div>
+        </div>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <div class="chat-bubble">
+          <p>Namaste! I'm Care AI. I can help explain your conditions, medicines, or general wellness in simple terms. What would you like to know?</p>
+          <div class="chat-meta"><span>Just now</span><button class="btn-link-small" onclick="speak(this.parentElement.previousElementSibling.textContent)">🔊 Listen</button></div>
+        </div>
+      </div>
+      <div class="chat-suggestions">
+        <button onclick="askCareAI('Explain my medical condition')">Explain my medical condition</button>
+        <button onclick="askCareAI('Help me understand my medicine')">Help me understand my medicine</button>
+        <button onclick="askCareAI('General wellness guidance')">General wellness guidance</button>
+        <button onclick="askCareAI('When should I consult a doctor?')">When should I consult a doctor?</button>
+      </div>
+      <div class="chat-input-row">
+        <input type="text" id="chatInput" placeholder="Type your question here..." onkeydown="if(event.key==='Enter') sendChat();">
+        <button class="btn btn-primary" onclick="sendChat()">Send</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: HEALTH PROFILE ============ -->
+  <section class="screen screen--narrow" id="screen-profile">
+    <div class="panel">
+      <div class="panel-head">
+        <h2 style="margin:0;">Health Profile</h2>
+        <button class="icon-btn" onclick="goHome()">← Patient Home</button>
+      </div>
+      <div class="profile-id-card">
+        <div class="profile-avatar">👤</div>
+        <div>
+          <div class="profile-id-name" id="profileName">Smt. Ananya Sen<span class="pill-verified">ABHA Verified</span></div>
+          <div class="muted">National Health Mission · Digital Health ID</div>
+        </div>
+      </div>
+      <div class="profile-grid">
+        <div class="profile-field"><div class="summary-label">ABHA / HEALTH NUMBER</div><div class="value" id="profileAbha"></div></div>
+        <div class="profile-field"><div class="summary-label">EXISTING CONDITIONS</div><div class="value" id="profileConditions"></div></div>
+        <div class="profile-field"><div class="summary-label">CURRENT MEDICINES</div><div class="value" id="profileMedicines"></div></div>
+        <div class="profile-field"><div class="summary-label">KNOWN ALLERGIES</div><div class="value" id="profileAllergies"></div></div>
+        <div class="profile-field" style="grid-column:1 / -1;"><div class="summary-label">EMERGENCY CONTACT</div><div class="value" id="profileEmergency"></div></div>
+      </div>
+      <button class="btn btn-outline btn-block" style="margin-top:20px;" onclick="startQuestionnaire()">↻ Update Medical History</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: PRESCRIPTION CENTER (hub) ============ -->
+  <section class="screen screen--wide" id="screen-prescription">
+    <div class="panel-head" style="margin-bottom:6px;">
+      <div>
+        <span class="eyebrow-pill">Digital Prescription Center</span>
+        <h2 style="margin:2px 0 0;">Scan, Speak &amp; Store Prescriptions</h2>
+      </div>
+      <button class="icon-btn" onclick="goHome()">← Patient Home</button>
+    </div>
+    <p class="panel-desc">Digitise a paper prescription in seconds, or describe your symptoms out loud in your own language — no reading or writing needed.</p>
+
+    <div class="notice-box">ⓘ This is a frontend prototype. Scanning and voice-drafting are simulated for demonstration and always require a doctor's review before any medicine is taken.</div>
+
+    <div class="rx-option-grid">
+      <!-- UPLOAD / SCAN -->
+      <div class="rx-option-card">
+        <h4>📷 Scan / Upload Prescription</h4>
+        <p>Take a photo of a paper prescription or upload an existing image. We'll digitise it into a structured, shareable record.</p>
+        <label class="rx-upload-zone" for="rxFileInput" id="rxUploadZone">
+          ⬆ Tap to choose a photo or file<br><span style="font-size:11.5px;">JPG, PNG or PDF</span>
+        </label>
+        <input type="file" id="rxFileInput" accept="image/*,application/pdf" class="hidden" onchange="handlePrescriptionUpload(event)">
+        <img id="rxPreviewThumb" class="rx-preview-thumb hidden">
+        <div class="rx-scan-status hidden" id="rxScanStatus"><span class="rx-spinner"></span> Scanning &amp; digitising prescription…</div>
+        <button class="btn btn-outline btn-block" onclick="document.getElementById('rxFileInput').click()">Choose File</button>
+      </div>
+
+      <!-- VOICE -->
+      <div class="rx-option-card">
+        <h4>🎙 Speak Your Symptoms</h4>
+        <p>Ideal for rural or low-literacy patients. Describe how you're feeling out loud — we'll transcribe it and draft a digital record.</p>
+        <div class="rx-lang-row">
+          <span>Speak in:</span>
+          <select id="rxVoiceLang">
+            <option value="en-IN">English</option>
+            <option value="hi-IN">हिंदी (Hindi)</option>
+            <option value="bn-IN">বাংলা (Bengali)</option>
+          </select>
+        </div>
+        <button class="rx-voice-btn" id="rxVoiceBtn" onclick="toggleVoiceCapture()">🎙 Tap to Start Speaking</button>
+        <textarea id="rxTranscript" class="rx-transcript" placeholder="Your spoken symptoms will appear here — you can also type or edit directly."></textarea>
+        <button class="btn btn-primary btn-block" onclick="draftPrescriptionFromVoice()">Draft Digital Prescription →</button>
+      </div>
+    </div>
+
+    <h3 class="section-title">Your Saved Prescriptions</h3>
+    <div class="card">
+      <div id="rxSavedList" class="rx-list"></div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: DIGITAL PRESCRIPTION VIEW ============ -->
+  <section class="screen screen--narrow" id="screen-prescription-view">
+    <div class="panel-head" style="margin-bottom:6px;">
+      <h2 style="margin:0;">Digital Prescription</h2>
+      <button class="icon-btn" onclick="showScreen('screen-prescription')">← Back to Prescription Center</button>
+    </div>
+
+    <div class="rx-lang-row" style="margin:14px 0 0;">
+      <span>🌐 Translate this prescription:</span>
+      <select id="rxDocLang" onchange="translatePrescriptionView(this.value)">
+        <option value="en">English</option>
+        <option value="hi">हिंदी (Hindi)</option>
+        <option value="bn">বাংলা (Bengali)</option>
+      </select>
+      <span style="font-size:11px;">(labels &amp; recognised medical terms only — demo)</span>
+    </div>
+
+    <div id="rxPrintArea">
+      <div class="rx-doc" id="rxDocCard"></div>
+    </div>
+
+    <div id="rxSummaryBox" class="notice-box hidden"></div>
+
+    <div id="rxFlashcardBox" class="hidden">
+      <h3 class="section-title">Flashcards</h3>
+      <div class="rx-flip-nav">
+        <span class="rx-flip-count" id="rxFlashCount">Card 1 of 1</span>
+        <div>
+          <button class="btn btn-outline" onclick="flashcardNav(-1)">← Prev</button>
+          <button class="btn btn-outline" onclick="flashcardNav(1)">Next →</button>
+        </div>
+      </div>
+      <div class="rx-flip-card" id="rxFlipCard" onclick="this.classList.toggle('flipped')">
+        <div class="rx-flip-inner">
+          <div class="rx-flip-face front" id="rxFlipFront">Q</div>
+          <div class="rx-flip-face back" id="rxFlipBack">A</div>
+        </div>
+      </div>
+      <p class="muted" style="text-align:center;">Tap the card to flip it.</p>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: DOCTOR PORTAL ENTRY ============ -->
+  <section class="screen screen--narrow" id="screen-doctor-entry">
+    <div class="panel">
+      <span class="eyebrow-pill">Healthcare Professional Access</span>
+      <div class="panel-head">
+        <h2>Doctor / Clinician Sign-in</h2>
+        <button class="icon-btn" onclick="speak('Doctor clinician sign in')">🔊 Listen</button>
+      </div>
+      <p class="panel-desc">This module is a frontend prototype for the clinical workspace. Choose a demo sign-in method to continue.</p>
+      <div class="notice-box">ⓘ No real medical council ID or hospital credentials are collected here.</div>
+
+      <div class="auth-grid">
+        <div class="auth-card" onclick="enterApp('screen-doctor-modules')">
+          <div class="auth-icon">🪪</div>
+          <h4>National Medical Register ID</h4>
+          <p>Sign in with your NMR / State Medical Council registration number.</p>
+          <button class="btn btn-primary btn-block">Verify NMR ID</button>
+        </div>
+        <div class="auth-card" onclick="enterApp('screen-doctor-modules')">
+          <div class="auth-icon">🏥</div>
+          <h4>Hospital Staff ID</h4>
+          <p>Sign in using your affiliated hospital or ASHA/MO staff credentials.</p>
+          <button class="btn btn-outline btn-block">Verify Staff ID</button>
+        </div>
+        <div class="auth-card auth-card--highlight" onclick="enterApp('screen-doctor-modules')">
+          <div class="auth-icon">🙋</div>
+          <h4>Demo Doctor Login</h4>
+          <p>Quickly explore the clinical workspace using a demo clinician profile.</p>
+          <button class="btn btn-primary btn-block">Use Demo Doctor</button>
+        </div>
+      </div>
+      <div class="panel-actions panel-actions--single">
+        <button class="btn btn-outline" onclick="showScreen('screen-role')">← Back</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: DOCTOR PORTAL — CHOOSE MODULE ============ -->
+  <section class="screen screen--narrow" id="screen-doctor-modules">
+    <div class="panel">
+      <span class="eyebrow-pill">Healthcare Professional Workspace</span>
+      <div class="panel-head">
+        <h2>Welcome, Dr. Demo Clinician</h2>
+        <button class="icon-btn" onclick="speak('Choose a clinical module')">🔊 Listen</button>
+      </div>
+      <p class="panel-desc">Choose which part of the clinical workspace you would like to open.</p>
+
+      <div class="module-grid">
+        <div class="module-card" onclick="openDoctorPlaceholder('OPD Consultation Queue', '🗓')">
+          <div class="module-icon">🗓</div>
+          <h3>OPD Consultation Queue</h3>
+          <p>View today's scheduled patients, check-in status, and consultation order.</p>
+        </div>
+        <div class="module-card" onclick="openDoctorPlaceholder('Patient Records Search', '🔍')">
+          <div class="module-icon">🔍</div>
+          <h3>Patient Records Search</h3>
+          <p>Look up a patient's ABHA-linked health record with their consent.</p>
+        </div>
+        <div class="module-card" onclick="openDoctorPlaceholder('e-Prescription Desk', '💊')">
+          <div class="module-icon">💊</div>
+          <h3>e-Prescription Desk</h3>
+          <p>Issue and digitally sign prescriptions linked to the patient's health record.</p>
+        </div>
+        <div class="module-card" onclick="openDoctorPlaceholder('eSanjeevani Tele-Consultation', '💻')">
+          <div class="module-icon">💻</div>
+          <h3>eSanjeevani Tele-Consultation</h3>
+          <p>Start or join a scheduled video consultation with a registered patient.</p>
+        </div>
+      </div>
+      <div class="panel-actions panel-actions--single">
+        <button class="btn btn-outline" onclick="logout()">Logout</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN: DOCTOR PORTAL — MODULE STUB ============ -->
+  <section class="screen screen--narrow" id="screen-doctor-placeholder">
+    <div class="panel center-panel">
+      <div class="stub-icon" id="doctorStubIcon">🗓</div>
+      <h2 id="doctorStubTitle">OPD Consultation Queue</h2>
+      <p class="muted">This module is a prototype stub in the current build — the full clinical workflow will be developed here.</p>
+      <button class="btn btn-outline btn-block" style="margin-top:20px;" onclick="showScreen('screen-doctor-modules')">← Back to Modules</button>
+    </div>
+  </section>
+</main>
+
+<div class="caresse-bottom-nav hidden" id="caresseBottomNav" aria-label="Caresse navigation">
+  <button data-nav="screen-caresse-learn" onclick="showCaresseScreen('screen-caresse-learn')"><span>📖</span><small>Learn</small></button>
+  <button data-nav="screen-caresse-dashboard" class="active" onclick="showCaresseScreen('screen-caresse-dashboard')"><span>✣</span><small>Dashboard</small></button>
+  <button data-nav="screen-caresse-accessibility" onclick="showCaresseScreen('screen-caresse-accessibility')"><span>♿</span><small>Accessibility</small></button>
+</div>
+
+<script src="script.js"></script>
+<script src="Accessibility/accessibility.js"></script>
+<script src="Learn/learn.js"></script>
+<script src="Dashboard/dashboard.js"></script>
+</body>
+</html>
